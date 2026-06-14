@@ -37,8 +37,8 @@
         /* LÜKS BUZLU CAM GİRİŞ EKRANI */
         #welcome-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(255,249,246,0.95) 0%, rgba(255,240,242,0.95) 100%);
-            z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: linear-gradient(135deg, rgba(255,249,246,0.98) 0%, rgba(255,240,242,0.98) 100%);
+            z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1); padding: 20px;
             backdrop-filter: blur(10px);
         }
@@ -48,13 +48,14 @@
             color: #cc8084; 
             margin-bottom: 30px;
             font-weight: 400;
+            pointer-events: none;
         }
 
         .name-input {
             padding: 16px 30px; font-size: 1rem; font-weight: 300;
-            border: 1px solid rgba(204, 128, 132, 0.3); background: rgba(255, 255, 255, 0.8); border-radius: 40px;
+            border: 1px solid rgba(204, 128, 132, 0.3); background: rgba(255, 255, 255, 0.9); border-radius: 40px;
             margin-bottom: 30px; width: 100%; max-width: 320px; text-align: center; outline: none;
-            letter-spacing: 1px; color: #614d4f;
+            letter-spacing: 1px; color: #614d4f; position: relative; z-index: 100000;
             box-shadow: 0 10px 25px rgba(247, 214, 217, 0.2); transition: all 0.4s;
         }
         .name-input:focus { border-color: #cc8084; background: #ffffff; box-shadow: 0 10px 30px rgba(247, 214, 217, 0.4); }
@@ -62,7 +63,8 @@
         .enter-btn {
             padding: 16px 50px; font-size: 0.85rem; font-weight: 400; text-transform: uppercase; letter-spacing: 4px;
             background: linear-gradient(135deg, #e8a7a1 0%, #cc8084 100%); border: none; color: white;
-            cursor: pointer; border-radius: 40px; box-shadow: 0 8px 25px rgba(204, 128, 132, 0.3); transition: all 0.4s ease;
+            cursor: pointer; border-radius: 40px; position: relative; z-index: 100000;
+            box-shadow: 0 8px 25px rgba(204, 128, 132, 0.3); transition: all 0.4s ease;
         }
         .enter-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(204, 128, 132, 0.5); }
 
@@ -189,3 +191,6 @@
             </div>
             <div class="polaroid-card">
                 <img src="https://images.unsplash.com/photo-1494774157365-9e04c6722e47?w=500" alt="Gülüşün">
+                <div class="polaroid-body"><h3>En Güzel Manzaram ✨</h3><p>Sen gülerken kısılan gözlerini, dünyanın hiçbir doğa harikasına değişmem sevgilim.</p></div>
+            </div>
+            <div class="polaroid-card">
