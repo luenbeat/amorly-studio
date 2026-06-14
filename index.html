@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonsuz Aşkımız 🤍</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf9f6; /* Soft lüks mat beyaz */
+            color: #2b2b2b;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* 1. SADE VE ŞIK GİRİŞ EKRANI */
+        #welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #faf9f6;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        #welcome-overlay h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        #welcome-overlay p {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #8c8c8c;
+            margin-bottom: 30px;
+        }
+
+        .enter-btn {
+            padding: 14px 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: #1a1a1a;
+            border: none;
+            color: #faf9f6;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .enter-btn:hover {
+            background: #4a4a4a;
+            transform: translateY(-2px);
+        }
+
+        /* 2. ANA SEKTÖR (HERO) */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(250, 249, 246, 0.4), rgba(250, 249, 246, 0.85)), 
+                        url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1600') no-repeat center center/cover;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        /* 3. SAYAÇ ALANI */
+        .timer-section {
+            padding: 100px 20px;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .timer-section h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #1a1a1a;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .time-box {
+            background: #faf9f6;
+            padding: 25px 20px;
+            border-radius: 8px;
+            min-width: 120px;
+            flex: 1;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid #f0eee9;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: #1a1a1a;
+        }
+
+        .time-box label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8c8c8c;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* 4. FOTOĞRAF GALERİSİ */
+        .gallery-section {
+            padding: 100px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .gallery-section h2 {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #1a1a1a;
+            margin-bottom: 50px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #f0eee9;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+        }
+
+        .card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .card-body h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+        }
+
+        .card-body p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* 5. BRANDED FOOTER */
+        footer {
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+            background: #ffffff;
+            border-top: 1px solid #f0eee9;
+        }
+
+        footer .love-note {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+
+        footer .brand-signature {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #b3b3b3;
+        }
+
+        footer .brand-signature a {
+            color: #8c8c8c;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer .brand-signature a:hover {
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Giriş Ekranı -->
+    <div id="welcome-overlay">
+        <h2>Bizim Hikayemiz</h2>
+        <p>Giriş yapmak için dokunun</p>
+        <button class="enter-btn" onclick="startEverything()">Hikayeyi Başlat</button>
+    </div>
+
+    <!-- DOĞRUDAN MP3 DOSYASI (Cigarettes After Sex - Apocalypse Orijinal) -->
+    <audio id="bg-music" loop>
+        <source src="https://files.catbox.moe/kbe968.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ANA KAPAK -->
+    <header>
+        <h1>Sen ve Ben</h1>
+        <p>Her saniyesi aşkla dolu bir ömür</p>
+    </header>
+
+    <!-- CANLI SAYAÇ -->
+    <section class="timer-section">
+        <h2>Birlikte Geçen Zamanımız</h2>
+        <div class="countdown-container">
+            <div class="time-box">
+                <span id="years">00</span>
+                <label>Yıl</label>
+            </div>
+            <div class="time-box">
+                <span id="months">00</span>
+                <label>Ay</label>
+            </div>
+            <div class="time-box">
+                <span id="days">00</span>
+                <label>Gün</label>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <label>Saat</label>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <label>Dakika</label>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <label>Saniye</label>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANILAR -->
+    <section class="gallery-section">
+        <h2>Anılarımız</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=500" alt="İlk Gün">
+                <div class="card-body">
+                    <h3>İlk Karşılaşma</h3>
+                    <p>Gözlerinin gözlerime değdiği o ilk saniyede, hayatımın tamamen değişeceğini anlamıştım.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1494774157365-9e04c6722e47?w=500" alt="Gülüşün">
+                <div class="card-body">
+                    <h3>En Güzel Manzaram</h3>
+                    <p>Sen gülerken kısılan gözlerini, dünyanın hiçbir harikasına ve hiçbir manzarasına değişmem.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=500" alt="Geleceğimiz">
+                <div class="card-body">
+                    <h3>Geleceğe Doğru</h3>
+                    <p>Elini hiç bırakmadan, önümüzdeki tüm yılları ve yolları birlikte yürümek dileğiyle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARKALI FOOTER -->
+    <footer>
+        <p class="love-note">Seni çok seviyorum... ❤️</p>
+        <p class="brand-signature">Designed with love by <a href="#">Amorly Studio</a></p>
+    </footer>
+
+    <script>
+        // TARİH AYARI (Yıl, Ay-1, Gün, Saat, Dakika)
+        // Örnek: 14 Şubat 2025 için -> (2025, 1, 14, 0, 0, 0) yapabilirsin.
+        const loveDate = new Date(2025, 1, 14, 0, 0, 0);
+
+        function updateCounter() {
+            const now = new Date();
+            
+            let years = now.getFullYear() - loveDate.getFullYear();
+            let months = now.getMonth() - loveDate.getMonth();
+            let days = now.getDate() - loveDate.getDate();
+
+            if (days < 0) {
+                months--;
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                days += prevMonth;
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            let hours = now.getHours() - loveDate.getHours();
+            let minutes = now.getMinutes() - loveDate.getMinutes();
+            let seconds = now.getSeconds() - loveDate.getSeconds();
+
+            if (seconds < 0) { minutes--; seconds += 60; }
+            if (minutes < 0) { hours--; minutes += 60; }
+            if (hours < 0) { hours += 24; }
+
+            document.getElementById('years').innerText = years.toString().padStart(2, '0');
+            document.getElementById('months').innerText = months.toString().padStart(2, '0');
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+        }
+
+        function startEverything() {
+            // Doğrudan MP3'ü oynat
+            const music = document.getElementById('bg-music');
+            music.volume = 0.6; // Ses seviyesi %60
+            
+            // Tarayıcı kilidini açıp çalmayı zorla
+            var playPromise = music.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    console.log("Müzik başarıyla başladı.");
+                }).catch(error => {
+                    console.log("Müzik engellendi:", error);
+                });
+            }
+
+            // Giriş ekranını kaldır
+            const overlay = document.getElementById('welcome-overlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 1200);
+
+            // Sayacı başlat
+            setInterval(updateCounter, 1000);
+            updateCounter();
+        }
+    </script>
+</body>
+</html>
