@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sonsuz Aşkımız 🤍</title>
-    <!-- Romantik Google Fontları -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
@@ -57,7 +56,6 @@
             font-size: 4rem;
             color: #d4a373;
             margin-bottom: 20px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.02);
         }
 
         .name-input {
@@ -176,7 +174,6 @@
         .gallery-section h2 { text-align: center; font-family: 'Caveat', cursive; font-size: 4.5rem; color: #cc8084; margin-bottom: 50px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         
-        /* Nostaljik Polaroid Fotoğraf Kartı Tasarımı */
         .polaroid-card { 
             background: #ffffff; 
             padding: 15px 15px 30px 15px;
@@ -202,22 +199,18 @@
 </head>
 <body>
 
-    <!-- Kalp Efektleri Konteyneri -->
     <div id="heart-container"></div>
 
-    <!-- Giriş Ekranı -->
     <div id="welcome-overlay">
         <h2>Bizim Hikayemiz</h2>
         <input type="text" id="partner-name" class="name-input" placeholder="Sevgilinin Adını Yaz..." autocomplete="off">
         <button class="enter-btn" onclick="startEverything()">Hikayeyi Başlat</button>
     </div>
 
-    <!-- SES DOSYASI -->
-   <audio id="bg-music" loop crossorigin="anonymous">
-        <source src="https://archive.org/download/cigarettes-after-sex-apocalypse_202606/Cigarettes%20After%20Sex%20-%20Apocalypse.mp3" type="audio/mpeg">
+    <audio id="bg-music" loop>
+        <source src="apocalypse.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- SAĞ ÜSTTEKİ MÜZİK BUTONU -->
     <button id="music-control-btn" onclick="toggleMusic()">🎵</button>
 
     <header>
@@ -225,7 +218,6 @@
         <p>Her saniyesi aşkla dolu masalsı bir ömür...</p>
     </header>
 
-    <!-- ROMANTİK MEKTUP BÖLÜMÜ -->
     <section class="love-letter-section">
         <div class="letter-box">
             <p>"Dünyadaki tüm kalpler arasından sıyrılıp ruhuma dokunan tek kalp senin oldu. İyi ki benimlesin, iyi ki hayatımın en güzel parçasısın..."</p>
@@ -277,12 +269,10 @@
     </footer>
 
     <script>
-        // Yıldönümü Tarihiniz (Yıl, Ay-1, Gün) -> Not: JavaScript'te aylar 0'dan başlar (Ocak=0, Şubat=1)
         const loveDate = new Date(2025, 1, 14, 0, 0, 0); 
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-control-btn');
 
-        // Arka Plandaki Kalp Yağmuru Efekti
         function createHearts() {
             const container = document.getElementById('heart-container');
             const heartTypes = ['❤️', '💖', '🤍', '🌸', '💕'];
@@ -292,15 +282,13 @@
                 heart.classList.add('heart');
                 heart.innerText = heartTypes[Math.floor(Math.random() * heartTypes.length)];
                 heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4-7 saniye arası düşüş
-                heart.style.fontSize = Math.random() * 15 + 15 + 'px'; // 15-30px arası boyut
+                heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+                heart.style.fontSize = Math.random() * 15 + 15 + 'px';
                 
                 container.appendChild(heart);
                 
-                setTimeout(() => {
-                    heart.remove();
-                }, 6000);
-            }, 400); // 400 milisaniyede bir yeni kalp
+                setTimeout(() => { heart.remove(); }, 6000);
+            }, 400);
         }
 
         function updateCounter() {
@@ -352,7 +340,7 @@
                 musicBtn.classList.add('rotating');
                 musicBtn.innerText = "⏸️";
             }).catch(err => {
-                console.log("Müzik için sağ üstteki butona dokunulması bekleniyor.");
+                console.log("Kullanıcı etkileşimi bekleniyor.");
             });
 
             const overlay = document.getElementById('welcome-overlay');
