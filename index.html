@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arda & Sena 🤍</title>
+    <!-- Üst Düzey Premium Fontlar ve İkon Kütüphanesi -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@200;300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -96,7 +97,7 @@
         .rotating { animation: spin 8s linear infinite; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* MAJESTİK HERO HEADER */
+        /* HERO HEADER */
         header {
             height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative;
             background: linear-gradient(rgba(10, 10, 10, 0.65), rgba(18, 18, 18, 1)), 
@@ -106,7 +107,7 @@
         header h1 { font-family: 'Pinyon Script', cursive; font-size: 8.5rem; color: #e8be90; margin-bottom: 10px; font-weight: 400; text-shadow: 0 0 20px rgba(232,190,144,0.2); }
         header p { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #a69685; letter-spacing: 6px; text-transform: uppercase; }
 
-        /* ŞİİRSEL MEKTUP BÖLÜMÜ */
+        /* MEKTUBUNUZ */
         .love-letter-section { padding: 140px 20px; display: flex; justify-content: center; z-index: 2; position: relative; }
         .letter-box { 
             background: rgba(22, 20, 20, 0.4); 
@@ -117,7 +118,7 @@
         }
         .letter-box p { font-family: 'Montserrat', sans-serif; font-weight: 200; font-size: 1.25rem; line-height: 2.2; color: #ebdcd0; letter-spacing: 1px; }
 
-        /* PREMİUM SAYAÇ */
+        /* SAYAÇ */
         .timer-section { padding: 120px 20px; text-align: center; position: relative; z-index: 2; }
         .timer-section h2 { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 60px; color: #e8be90; letter-spacing: 6px; text-transform: uppercase; }
         
@@ -133,7 +134,7 @@
         .time-box span { display: block; font-size: 3.2rem; font-weight: 200; color: #e8be90; font-family: 'Cinzel', serif; }
         .time-box label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 4px; color: #a69685; margin-top: 15px; display: block; font-weight: 400; }
 
-        /* SANATSAL POLAROID SERGİSİ */
+        /* POLAROID GALERİSİ */
         .gallery-section { padding: 140px 20px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
         .gallery-section h2 { text-align: center; font-family: 'Pinyon Script', cursive; font-size: 6.5rem; color: #e8be90; margin-bottom: 80px; font-weight: 400; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 60px; }
@@ -152,11 +153,10 @@
         .polaroid-body h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #e8be90; margin-bottom: 10px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; }
         .polaroid-body p { font-size: 0.85rem; color: #a69685; font-weight: 300; line-height: 1.8; letter-spacing: 0.5px; }
 
-        /* SOFİSTİKE İMZA FOOTER & CREDITS */
+        /* MARKA KÜNYESİ */
         footer { padding: 140px 20px 40px 20px; text-align: center; background: transparent; position: relative; z-index: 2; }
         footer .love-note { font-family: 'Pinyon Script', cursive; font-size: 5.5rem; color: #e8be90; margin-bottom: 50px; font-weight: 400; }
         
-        /* PREMİUM DİPNOT MARKA ALANI */
         .studio-credits {
             max-width: 600px; margin: 0 auto; padding-top: 30px;
             border-top: 1px solid rgba(232, 190, 144, 0.1);
@@ -180,6 +180,7 @@
 
     <div id="particle-container"></div>
 
+    <!-- Giriş Ekrani -->
     <div id="welcome-overlay">
         <div class="overlay-card">
             <h2>The Story Of Us</h2>
@@ -189,6 +190,7 @@
         </div>
     </div>
 
+    <!-- REPO MÜZİĞİ -->
     <audio id="bg-music" loop>
         <source src="apocalpyse.mp3" type="audio/mpeg">
     </audio>
@@ -222,15 +224,18 @@
         <h2>Zaman Tüneli</h2>
         <div class="grid">
             <div class="polaroid-card">
-                <img src="https://images2.imgbox.com/39/fa/k7iGg16S_o.jpeg" alt="Sena">
+                <!-- Yerel Dosya 1 -->
+                <img src="WhatsApp Image 2026-06-15 at 01.07.43 (2).jpeg" alt="Sena">
                 <div class="polaroid-body"><h3>En Özel Manzara</h3><p>Dünyanın en asil sanat eseri bile senin tek bir bakışın, tek bir gülüşün kadar büyüleyici olamaz.</p></div>
             </div>
             <div class="polaroid-card">
-                <img src="https://images2.imgbox.com/f9/ee/3mXzR1sB_o.jpeg" alt="Arda ve Sena Sahil">
+                <!-- Yerel Dosya 2 -->
+                <img src="WhatsApp Image 2026-06-15 at 01.07.43 (1).jpeg" alt="Arda ve Sena Sahil">
                 <div class="polaroid-body"><h3>İlk Karşılaşma</h3><p>Ruhunun kokusunu ilk aldığım an, tüm ömrümü senin kollarında tamamlamak istediğimi anladım.</p></div>
             </div>
             <div class="polaroid-card">
-                <img src="https://images2.imgbox.com/2b/ef/nOor7GqG_o.jpeg" alt="Arda ve Sena Köprü">
+                <!-- Yerel Dosya 3 -->
+                <img src="WhatsApp Image 2026-06-15 at 01.07.43.jpeg" alt="Arda ve Sena Köprü">
                 <div class="polaroid-body"><h3>Sonsuz Gelecek</h3><p>Yollarımız ne kadar uzun olursa olsun, attığım her adımın sonu daima sana çıkacak.</p></div>
             </div>
         </div>
