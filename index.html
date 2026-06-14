@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sonsuz Aşkımız 🤍</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
@@ -38,7 +39,6 @@
             font-weight: 500;
         }
 
-        /* Tarayıcı kilidini açacak olan input alanı */
         .name-input {
             padding: 12px 20px;
             font-size: 0.9rem;
@@ -68,6 +68,17 @@
             transition: all 0.3s ease;
         }
         .enter-btn:hover { background: #4a4a4a; transform: translateY(-2px); }
+
+        /* YOUTUBE OYNATICI (EKRANDA GÖRÜNMEYECEK ŞEKİLDE GİZLENDİ) */
+        #yt-audio-player {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            overflow: hidden;
+        }
 
         /* ANA SİTE TASARIMI */
         header {
@@ -110,18 +121,15 @@
 </head>
 <body>
 
-    <!-- Yenilenen Giriş Ekranı -->
+    <!-- Giriş Ekranı -->
     <div id="welcome-overlay">
         <h2>Bizim Hikayemiz</h2>
-        <!-- Bu kutuya bir şey yazıldığı an tarayıcının ses engeli kalkar -->
         <input type="text" id="partner-name" class="name-input" placeholder="Sevgilinin Adını Yaz..." autocomplete="off">
         <button class="enter-btn" onclick="startEverything()">Hikayeyi Başlat</button>
     </div>
 
-    <!-- Kendi klasöründeki MP3'ü çalan ana element -->
-    <audio id="bg-music" loop preload="auto">
-        <source src="apocalypse.mp3" type="audio/mpeg">
-    </audio>
+    <!-- YouTube API için Gizli Div -->
+    <div id="yt-audio-player"></div>
 
     <header>
         <h1 id="dynamic-title">Sen ve Ben</h1>
@@ -164,7 +172,29 @@
     </footer>
 
     <script>
-        const loveDate = new Date(2025, 1, 14, 0, 0, 0); // Tarih Ayarı
+        // Yıl dönümü başlangıç tarihi
+        const loveDate = new Date(2025, 1, 14, 0, 0, 0); 
+
+        // 1. YOUTUBE SCRIPTINI OTOMATİK ÇAĞIRMA
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('yt-audio-player', {
+                height: '1',
+                width: '1',
+                videoId: 's7K9vD0Zz0w', // Apocalypse Orijinal Video ID'si
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'loop': 1,
+                    'playlist': 's7K9vD0Zz0w'
+                }
+            });
+        }
 
         function updateCounter() {
             const now = new Date();
@@ -197,18 +227,13 @@
                 document.getElementById('dynamic-title').innerText = "Sen ve " + nameInput;
             }
 
-            // MÜZİK OYNATMA (Klavye etkileşimi alındığı için artık kesin çalacak)
-            const music = document.getElementById('bg-music');
-            music.volume = 0.5;
-            
-            // Çalmayı zorla
-            music.play().then(() => {
-                console.log("Müzik başarıyla başladı!");
-            }).catch(err => {
-                console.log("Tarayıcı engeli:", err);
-            });
+            // 2. RESMİ YOUTUBE OYNATICISINI TETİKLEME
+            if (player && player.playVideo) {
+                player.setVolume(50); // Ses seviyesi yarıda
+                player.playVideo();
+            }
 
-            // Ekranı kaldır
+            // Ekranı yumuşakça kaldır
             const overlay = document.getElementById('welcome-overlay');
             overlay.style.opacity = '0';
             setTimeout(() => { overlay.style.display = 'none'; }, 1200);
