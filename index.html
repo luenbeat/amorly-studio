@@ -3,98 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonsuz Aşkımız 🤍</title>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Sonsuz Masalımız 🤍</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #fff9f6;
+            background: linear-gradient(180deg, #fff9f6 0%, #fff0f2 50%, #f7e7e8 100%);
             color: #4a3e3d;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
+        /* IŞILDAYAN KALPLER */
         #heart-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .heart { position: absolute; color: #ffb3ba; font-size: 20px; animation: floatUp 6s linear infinite; opacity: 0; }
+        .heart { 
+            position: absolute; 
+            color: #ffb3ba; 
+            font-size: 20px; 
+            animation: floatUp 7s linear infinite; 
+            opacity: 0;
+            text-shadow: 0 0 8px rgba(255, 179, 186, 0.6);
+        }
         @keyframes floatUp {
-            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+            0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; }
+            15% { opacity: 0.7; }
+            85% { opacity: 0.7; }
+            100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
         }
 
+        /* LÜKS BUZLU CAM GİRİŞ EKRANI */
         #welcome-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, #fff0f2 0%, #fff9f6 100%);
+            background: linear-gradient(135deg, rgba(255,249,246,0.95) 0%, rgba(255,240,242,0.95) 100%);
             z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1); padding: 20px;
+            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1); padding: 20px;
+            backdrop-filter: blur(10px);
         }
-        #welcome-overlay h2 { font-family: 'Caveat', cursive; font-size: 4rem; color: #d4a373; margin-bottom: 20px; }
+        #welcome-overlay h2 { 
+            font-family: 'Alex Brush', cursive; 
+            font-size: 5.5rem; 
+            color: #cc8084; 
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
 
         .name-input {
-            padding: 15px 25px; font-size: 1rem; border: 2px solid #f7d6d9; background: #ffffff; border-radius: 30px;
-            margin-bottom: 25px; width: 100%; max-width: 300px; text-align: center; outline: none;
-            box-shadow: 0 5px 15px rgba(247, 214, 217, 0.3); transition: all 0.3s;
+            padding: 16px 30px; font-size: 1rem; font-weight: 300;
+            border: 1px solid rgba(204, 128, 132, 0.3); background: rgba(255, 255, 255, 0.8); border-radius: 40px;
+            margin-bottom: 30px; width: 100%; max-width: 320px; text-align: center; outline: none;
+            letter-spacing: 1px; color: #614d4f;
+            box-shadow: 0 10px 25px rgba(247, 214, 217, 0.2); transition: all 0.4s;
         }
-        .name-input:focus { border-color: #ffb3ba; box-shadow: 0 5px 20px rgba(247, 214, 217, 0.6); }
+        .name-input:focus { border-color: #cc8084; background: #ffffff; box-shadow: 0 10px 30px rgba(247, 214, 217, 0.4); }
 
         .enter-btn {
-            padding: 15px 45px; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 3px;
-            background: linear-gradient(135deg, #ffb3ba 0%, #ffc6ff 100%); border: none; color: white;
-            cursor: pointer; border-radius: 30px; box-shadow: 0 5px 20px rgba(255, 179, 186, 0.4); transition: all 0.3s ease;
+            padding: 16px 50px; font-size: 0.85rem; font-weight: 400; text-transform: uppercase; letter-spacing: 4px;
+            background: linear-gradient(135deg, #e8a7a1 0%, #cc8084 100%); border: none; color: white;
+            cursor: pointer; border-radius: 40px; box-shadow: 0 8px 25px rgba(204, 128, 132, 0.3); transition: all 0.4s ease;
         }
-        .enter-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 179, 186, 0.6); }
+        .enter-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(204, 128, 132, 0.5); }
 
+        /* MÜZİK KONTROLÜ (DÖNEN VİNL KUTUSU) */
         #music-control-btn {
-            position: fixed; top: 20px; right: 20px; z-index: 999; background: rgba(255, 255, 255, 0.9);
-            border: 1px solid #f7d6d9; width: 50px; height: 50px; border-radius: 50%; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(247, 214, 217, 0.4);
-            backdrop-filter: blur(5px); font-size: 1.3rem; transition: all 0.3s ease;
+            position: fixed; top: 25px; right: 25px; z-index: 999; 
+            background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(247, 214, 217, 0.6); 
+            width: 55px; height: 55px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05); backdrop-filter: blur(8px); 
+            font-size: 1.4rem; transition: all 0.4s ease;
         }
-        .rotating { animation: spin 4s linear infinite; }
+        #music-control-btn:hover { transform: scale(1.08); background: #ffffff; }
+        .rotating { animation: spin 5s linear infinite; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
+        /* HERO HEADER BÖLÜMÜ */
         header {
             height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative;
-            background: linear-gradient(rgba(255, 249, 246, 0.3), rgba(255, 249, 246, 0.85)), 
+            background: linear-gradient(rgba(255, 249, 246, 0.1), rgba(255, 249, 246, 0.9)), 
                         url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1600') no-repeat center center/cover;
             padding: 20px; z-index: 2;
         }
-        header h1 { font-family: 'Caveat', cursive; font-size: 6.5rem; color: #cc8084; margin-bottom: 10px; }
-        header p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: #7a6365; letter-spacing: 1px; }
+        header h1 { font-family: 'Alex Brush', cursive; font-size: 8rem; color: #cc8084; margin-bottom: 15px; font-weight: 400; }
+        header p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.25rem; color: #7a6365; letter-spacing: 2px; font-weight: 400; }
 
-        .love-letter-section { padding: 80px 20px; display: flex; justify-content: center; z-index: 2; position: relative; }
-        .letter-box { background: #fff0f2; border: 1px dashed #ffccd2; padding: 40px; border-radius: 15px; max-width: 700px; text-align: center; box-shadow: 0 10px 30px rgba(247, 214, 217, 0.2); }
-        .letter-box p { font-family: 'Playfair Display', serif; font-size: 1.2rem; line-height: 1.8; color: #614d4f; font-style: italic; }
+        /* ROMANTİK BUZLU CAM MEKTUP */
+        .love-letter-section { padding: 100px 20px; display: flex; justify-content: center; z-index: 2; position: relative; }
+        .letter-box { 
+            background: rgba(255, 255, 255, 0.4); 
+            border: 1px solid rgba(255, 255, 255, 0.6); 
+            padding: 50px 40px; border-radius: 24px; max-width: 750px; text-align: center; 
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 40px rgba(247, 214, 217, 0.15); 
+        }
+        .letter-box p { font-family: 'Playfair Display', serif; font-size: 1.3rem; line-height: 1.9; color: #524142; font-style: italic; }
 
-        .timer-section { padding: 80px 20px; text-align: center; position: relative; z-index: 2; }
-        .timer-section h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 40px; color: #cc8084; letter-spacing: 2px; }
+        /* PREMİUM CAM SAYAÇ KUTULARI */
+        .timer-section { padding: 100px 20px; text-align: center; position: relative; z-index: 2; }
+        .timer-section h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 50px; color: #cc8084; letter-spacing: 3px; text-transform: uppercase; }
         
-        .countdown-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; max-width: 900px; margin: 0 auto; }
-        .time-box { background: #ffffff; padding: 30px 20px; border-radius: 20px; min-width: 120px; flex: 1; box-shadow: 0 10px 25px rgba(247, 214, 217, 0.25); border: 1px solid #fff0f2; transition: transform 0.3s; }
-        .time-box:hover { transform: scale(1.05); }
-        .time-box span { display: block; font-size: 3rem; font-weight: 300; color: #cc8084; font-family: 'Playfair Display', serif; }
-        .time-box label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #a38588; margin-top: 8px; display: block; }
+        .countdown-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; max-width: 950px; margin: 0 auto; }
+        .time-box { 
+            background: rgba(255, 255, 255, 0.5); 
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            padding: 35px 20px; border-radius: 24px; min-width: 130px; flex: 1; 
+            box-shadow: 0 15px 35px rgba(247, 214, 217, 0.15); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .time-box:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.8); box-shadow: 0 20px 40px rgba(247, 214, 217, 0.25); }
+        .time-box span { display: block; font-size: 3.5rem; font-weight: 200; color: #cc8084; font-family: 'Playfair Display', serif; }
+        .time-box label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; color: #9c8284; margin-top: 10px; display: block; font-weight: 400; }
 
-        .gallery-section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
-        .gallery-section h2 { text-align: center; font-family: 'Caveat', cursive; font-size: 4.5rem; color: #cc8084; margin-bottom: 50px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        /* ESKİ NOSTALJİK POLAROID GALERİ */
+        .gallery-section { padding: 120px 20px; max-width: 1150px; margin: 0 auto; position: relative; z-index: 2; }
+        .gallery-section h2 { text-align: center; font-family: 'Alex Brush', cursive; font-size: 5.5rem; color: #cc8084; margin-bottom: 60px; font-weight: 400; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; }
         
-        .polaroid-card { background: #ffffff; padding: 15px 15px 30px 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.06); border: 1px solid #f2ece9; transform: rotate(-2deg); transition: all 0.4s ease; }
-        .polaroid-card:nth-child(even) { transform: rotate(3deg); }
-        .polaroid-card:hover { transform: rotate(0deg) scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .polaroid-card img { width: 100%; height: 300px; object-fit: cover; border: 1px solid #f5f5f5; }
+        .polaroid-card { 
+            background: #ffffff; padding: 18px 18px 35px 18px; 
+            box-shadow: 0 20px 45px rgba(0,0,0,0.05); border: 1px solid #fcf9f7; 
+            transform: rotate(-1.5deg); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+        }
+        .polaroid-card:nth-child(even) { transform: rotate(2deg); }
+        .polaroid-card:hover { transform: rotate(0deg) scale(1.04); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        .polaroid-card img { width: 100%; height: 320px; object-fit: cover; border: 1px solid #f7f7f7; filter: sepia(10%) contrast(95%); }
         
-        .polaroid-body { padding-top: 20px; text-align: center; }
-        .polaroid-body h3 { font-family: 'Caveat', cursive; font-size: 2.2rem; color: #4a3e3d; margin-bottom: 5px; }
-        .polaroid-body p { font-size: 0.85rem; color: #8c7678; font-weight: 300; line-height: 1.5; }
+        .polaroid-body { padding-top: 25px; text-align: center; }
+        .polaroid-body h3 { font-family: 'Alex Brush', cursive; font-size: 3rem; color: #4a3e3d; margin-bottom: 5px; font-weight: 400; }
+        .polaroid-body p { font-size: 0.85rem; color: #8c7678; font-weight: 300; line-height: 1.6; letter-spacing: 0.5px; padding: 0 10px; }
 
-        footer { padding: 100px 20px 40px 20px; text-align: center; background: transparent; position: relative; z-index: 2; }
-        footer .love-note { font-family: 'Caveat', cursive; font-size: 3.5rem; color: #cc8084; margin-bottom: 40px; }
-        footer .brand-signature { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #b8a1a3; }
-        footer .brand-signature a { color: #cc8084; text-decoration: none; font-weight: 600; }
+        /* ZARİF İMZA FOOTER */
+        footer { padding: 120px 20px 50px 20px; text-align: center; background: transparent; position: relative; z-index: 2; }
+        footer .love-note { font-family: 'Alex Brush', cursive; font-size: 4.5rem; color: #cc8084; margin-bottom: 50px; font-weight: 400; }
+        footer .brand-signature { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: #b8a1a3; font-weight: 300; }
+        footer .brand-signature a { color: #cc8084; text-decoration: none; font-weight: 500; }
     </style>
 </head>
 <body>
@@ -107,8 +151,8 @@
         <button class="enter-btn" onclick="startEverything()">Hikayeyi Başlat</button>
     </div>
 
-    <audio id="bg-music" loop>
-        <source src="apocalypse.mp3" type="audio/mpeg">
+    <audio id="bg-music" loop crossorigin="anonymous">
+        <source src="https://storage.googleapis.com/ikihayat-muzik/apocalypse.mp3" type="audio/mpeg">
     </audio>
 
     <button id="music-control-btn" onclick="toggleMusic()">🎵</button>
@@ -145,101 +189,3 @@
             </div>
             <div class="polaroid-card">
                 <img src="https://images.unsplash.com/photo-1494774157365-9e04c6722e47?w=500" alt="Gülüşün">
-                <div class="polaroid-body"><h3>En Güzel Manzaram ✨</h3><p>Sen gülerken kısılan gözlerini, dünyanın hiçbir doğa harikasına değişmem sevgilim.</p></div>
-            </div>
-            <div class="polaroid-card">
-                <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=500" alt="Geleceğimiz">
-                <div class="polaroid-body"><h3>Sonsuza Doğru 🌹</h3><p>Elini hiç bırakmadan, önümüzdeki tüm yılları ve yolları birlikte yürümek dileğiyle.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p class="love-note">Seni çok seviyorum... ❤️</p>
-        <p class="brand-signature">Designed with love by <a href="#">Amorly Studio</a></p>
-    </footer>
-
-    <script>
-        const loveDate = new Date(2025, 1, 14, 0, 0, 0); 
-        const music = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-control-btn');
-
-        function createHearts() {
-            const container = document.getElementById('heart-container');
-            const heartTypes = ['❤️', '💖', '🤍', '🌸', '💕'];
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.innerText = heartTypes[Math.floor(Math.random() * heartTypes.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = Math.random() * 3 + 4 + 's';
-                heart.style.fontSize = Math.random() * 15 + 15 + 'px';
-                container.appendChild(heart);
-                setTimeout(() => { heart.remove(); }, 6000);
-            }, 400);
-        }
-
-        function updateCounter() {
-            const now = new Date();
-            let years = now.getFullYear() - loveDate.getFullYear();
-            let months = now.getMonth() - loveDate.getMonth();
-            let days = now.getDate() - loveDate.getDate();
-
-            if (days < 0) { months--; const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate(); days += prevMonth; }
-            if (months < 0) { years--; months += 12; }
-
-            let hours = now.getHours() - loveDate.getHours();
-            let minutes = now.getMinutes() - loveDate.getMinutes();
-            let seconds = now.getSeconds() - loveDate.getSeconds();
-
-            if (seconds < 0) { minutes--; seconds += 60; }
-            if (minutes < 0) { hours--; minutes += 60; }
-            if (hours < 0) { hours += 24; }
-
-            document.getElementById('years').innerText = years.toString().padStart(2, '0');
-            document.getElementById('months').innerText = months.toString().padStart(2, '0');
-            document.getElementById('days').innerText = days.toString().padStart(2, '0');
-            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
-        }
-
-        function toggleMusic() {
-            if (music.paused) {
-                music.volume = 0.5;
-                music.play();
-                musicBtn.classList.add('rotating');
-                musicBtn.innerText = "⏸️";
-            } else {
-                music.pause();
-                musicBtn.classList.remove('rotating');
-                musicBtn.innerText = "🎵";
-            }
-        }
-
-        function startEverything() {
-            const nameInput = document.getElementById('partner-name').value;
-            if(nameInput.trim() !== "") {
-                document.getElementById('dynamic-title').innerText = "Sen ve " + nameInput;
-            }
-
-            music.volume = 0.5;
-            music.play().then(() => {
-                musicBtn.classList.add('rotating');
-                musicBtn.innerText = "⏸️";
-            }).catch(error => {
-                console.log("Otomatik oynatma engellendi, manuel oynatım hazır.");
-                musicBtn.innerText = "🎵";
-            });
-
-            const overlay = document.getElementById('welcome-overlay');
-            overlay.style.opacity = '0';
-            setTimeout(() => { overlay.style.display = 'none'; }, 1500);
-
-            createHearts();
-            setInterval(updateCounter, 1000);
-            updateCounter();
-        }
-    </script>
-</body>
-</html>
