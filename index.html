@@ -4,83 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sonsuz Aşkımız 🤍</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Romantik Google Fontları -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #faf9f6;
-            color: #2b2b2b;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff9f6; /* Sıcak pastel krem */
+            color: #4a3e3d; /* Yumuşak kahve/gül tonu */
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* LÜKS VE ETKİLEŞİMLİ GİRİŞ EKRANI */
+        /* KALPLERİN AKACAĞI ARKA PLAN */
+        #heart-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .heart {
+            position: absolute;
+            color: #ffb3ba;
+            font-size: 20px;
+            animation: floatUp 6s linear infinite;
+            opacity: 0;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* MASALSI GİRİŞ EKRANI */
         #welcome-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: #faf9f6;
+            background: radial-gradient(circle, #fff0f2 0%, #fff9f6 100%);
             z-index: 9999;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1);
             padding: 20px;
         }
 
         #welcome-overlay h2 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8rem;
-            color: #1a1a1a;
-            margin-bottom: 15px;
-            font-weight: 500;
+            font-family: 'Caveat', cursive;
+            font-size: 4rem;
+            color: #d4a373;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.02);
         }
 
         .name-input {
-            padding: 12px 20px;
-            font-size: 0.9rem;
-            border: 1px solid #dcdad4;
+            padding: 15px 25px;
+            font-size: 1rem;
+            border: 2px solid #f7d6d9;
             background: #ffffff;
-            border-radius: 4px;
-            margin-bottom: 20px;
+            border-radius: 30px;
+            margin-bottom: 25px;
             width: 100%;
-            max-width: 280px;
+            max-width: 300px;
             text-align: center;
             outline: none;
-            transition: border 0.3s;
+            box-shadow: 0 5px 15px rgba(247, 214, 217, 0.3);
+            transition: all 0.3s;
         }
-        .name-input:focus { border-color: #1a1a1a; }
+        .name-input:focus { border-color: #ffb3ba; box-shadow: 0 5px 20px rgba(247, 214, 217, 0.6); }
 
         .enter-btn {
-            padding: 14px 40px;
-            font-size: 0.8rem;
+            padding: 15px 45px;
+            font-size: 0.9rem;
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            background: #1a1a1a;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #ffb3ba 0%, #ffc6ff 100%);
             border: none;
-            color: #faf9f6;
+            color: white;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(255, 179, 186, 0.4);
             transition: all 0.3s ease;
         }
-        .enter-btn:hover { background: #4a4a4a; transform: translateY(-2px); }
+        .enter-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 179, 186, 0.6); }
 
-        /* YOUTUBE OYNATICI (EKRANDA GÖRÜNMEYECEK ŞEKİLDE GİZLENDİ) */
-        #yt-audio-player {
-            position: absolute;
-            top: -9999px;
-            left: -9999px;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
-            overflow: hidden;
+        /* ESTETİK MÜZİK BUTONU */
+        #music-control-btn {
+            position: fixed;
+            top: 20px; right: 20px;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #f7d6d9;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(247, 214, 217, 0.4);
+            backdrop-filter: blur(5px);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
         }
+        .rotating { animation: spin 4s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* ANA SİTE TASARIMI */
+        /* ROMANTİK HEADER */
         header {
             height: 100vh;
             display: flex;
@@ -88,38 +119,91 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(250, 249, 246, 0.4), rgba(250, 249, 246, 0.85)), 
-                        url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1600') no-repeat center center/cover;
+            position: relative;
+            background: linear-gradient(rgba(255, 249, 246, 0.3), rgba(255, 249, 246, 0.85)), 
+                        url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1600') no-repeat center center/cover;
             padding: 20px;
+            z-index: 2;
         }
-        header h1 { font-family: 'Dancing Script', cursive; font-size: 5rem; color: #1a1a1a; margin-bottom: 15px; }
-        header p { font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; color: #666; }
+        header h1 { font-family: 'Caveat', cursive; font-size: 6.5rem; color: #cc8084; margin-bottom: 10px; }
+        header p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: #7a6365; letter-spacing: 1px; }
 
-        .timer-section { padding: 100px 20px; background: #ffffff; text-align: center; }
-        .timer-section h2 { font-size: 1.4rem; font-weight: 400; margin-bottom: 40px; letter-spacing: 3px; text-transform: uppercase; color: #1a1a1a; }
+        /* MEKTUP / ŞİİR BÖLÜMÜ */
+        .love-letter-section {
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            z-index: 2;
+            position: relative;
+        }
+        .letter-box {
+            background: #fff0f2;
+            border: 1px dashed #ffccd2;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(247, 214, 217, 0.2);
+        }
+        .letter-box p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #614d4f;
+            font-style: italic;
+        }
+
+        /* SAYAÇ BÖLÜMÜ */
+        .timer-section { padding: 80px 20px; text-align: center; position: relative; z-index: 2; }
+        .timer-section h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 40px; color: #cc8084; letter-spacing: 2px; }
         
-        .countdown-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; max-width: 900px; margin: 0 auto; }
-        .time-box { background: #faf9f6; padding: 25px 20px; border-radius: 8px; min-width: 120px; flex: 1; box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid #f0eee9; }
-        .time-box span { display: block; font-size: 2.8rem; font-weight: 300; color: #1a1a1a; }
-        .time-box label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #8c8c8c; margin-top: 5px; display: block; }
+        .countdown-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; max-width: 900px; margin: 0 auto; }
+        .time-box { 
+            background: #ffffff; 
+            padding: 30px 20px; 
+            border-radius: 20px; 
+            min-width: 120px; flex: 1; 
+            box-shadow: 0 10px 25px rgba(247, 214, 217, 0.25); 
+            border: 1px solid #fff0f2;
+            transition: transform 0.3s;
+        }
+        .time-box:hover { transform: scale(1.05); }
+        .time-box span { display: block; font-size: 3rem; font-weight: 300; color: #cc8084; font-family: 'Playfair Display', serif; }
+        .time-box label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #a38588; margin-top: 8px; display: block; }
 
-        .gallery-section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
-        .gallery-section h2 { text-align: center; font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: #1a1a1a; margin-bottom: 50px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .card { background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid #f0eee9; transition: transform 0.4s ease; }
-        .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; height: 350px; object-fit: cover; }
-        .card-body { padding: 25px; text-align: center; }
-        .card-body h3 { font-size: 1.1rem; font-weight: 500; margin-bottom: 12px; color: #1a1a1a; }
-        .card-body p { font-size: 0.9rem; color: #666; line-height: 1.6; font-weight: 300; }
+        /* POLAROID GALERİ BÖLÜMÜ */
+        .gallery-section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
+        .gallery-section h2 { text-align: center; font-family: 'Caveat', cursive; font-size: 4.5rem; color: #cc8084; margin-bottom: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        
+        /* Nostaljik Polaroid Fotoğraf Kartı Tasarımı */
+        .polaroid-card { 
+            background: #ffffff; 
+            padding: 15px 15px 30px 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06); 
+            border: 1px solid #f2ece9;
+            transform: rotate(-2deg);
+            transition: all 0.4s ease;
+        }
+        .polaroid-card:nth-child(even) { transform: rotate(3deg); }
+        .polaroid-card:hover { transform: rotate(0deg) scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .polaroid-card img { width: 100%; height: 300px; object-fit: cover; border: 1px solid #f5f5f5; }
+        
+        .polaroid-body { padding-top: 20px; text-align: center; }
+        .polaroid-body h3 { font-family: 'Caveat', cursive; font-size: 2.2rem; color: #4a3e3d; margin-bottom: 5px; }
+        .polaroid-body p { font-size: 0.85rem; color: #8c7678; font-weight: 300; line-height: 1.5; }
 
-        footer { padding: 80px 20px 40px 20px; text-align: center; background: #ffffff; border-top: 1px solid #f0eee9; }
-        footer .love-note { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #1a1a1a; margin-bottom: 40px; }
-        footer .brand-signature { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #b3b3b3; }
-        footer .brand-signature a { color: #8c8c8c; text-decoration: none; font-weight: 500; }
+        /* FOOTER */
+        footer { padding: 100px 20px 40px 20px; text-align: center; background: transparent; position: relative; z-index: 2; }
+        footer .love-note { font-family: 'Caveat', cursive; font-size: 3.5rem; color: #cc8084; margin-bottom: 40px; }
+        footer .brand-signature { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #b8a1a3; }
+        footer .brand-signature a { color: #cc8084; text-decoration: none; font-weight: 600; }
     </style>
 </head>
 <body>
+
+    <!-- Kalp Efektleri Konteyneri -->
+    <div id="heart-container"></div>
 
     <!-- Giriş Ekranı -->
     <div id="welcome-overlay">
@@ -128,16 +212,28 @@
         <button class="enter-btn" onclick="startEverything()">Hikayeyi Başlat</button>
     </div>
 
-    <!-- YouTube API için Gizli Div -->
-    <div id="yt-audio-player"></div>
+    <!-- SES DOSYASI -->
+    <audio id="bg-music" loop crossorigin="anonymous">
+        <source src="https://files.catbox.moe/kbe968.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- SAĞ ÜSTTEKİ MÜZİK BUTONU -->
+    <button id="music-control-btn" onclick="toggleMusic()">🎵</button>
 
     <header>
         <h1 id="dynamic-title">Sen ve Ben</h1>
-        <p>Her saniyesi aşkla dolu bir ömür</p>
+        <p>Her saniyesi aşkla dolu masalsı bir ömür...</p>
     </header>
 
+    <!-- ROMANTİK MEKTUP BÖLÜMÜ -->
+    <section class="love-letter-section">
+        <div class="letter-box">
+            <p>"Dünyadaki tüm kalpler arasından sıyrılıp ruhuma dokunan tek kalp senin oldu. İyi ki benimlesin, iyi ki hayatımın en güzel parçasısın..."</p>
+        </div>
+    </section>
+
     <section class="timer-section">
-        <h2>Birlikte Geçen Zamanımız</h2>
+        <h2>Birlikte Geçen Ömrümüz</h2>
         <div class="countdown-container">
             <div class="time-box"><span id="years">00</span><label>Yıl</label></div>
             <div class="time-box"><span id="months">00</span><label>Ay</label></div>
@@ -149,19 +245,28 @@
     </section>
 
     <section class="gallery-section">
-        <h2>Anılarımız</h2>
+        <h2>Anılarımızın Köşesi</h2>
         <div class="grid">
-            <div class="card">
+            <div class="polaroid-card">
                 <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=500" alt="İlk Gün">
-                <div class="card-body"><h3>İlk Karşılaşma</h3><p>Gözlerinin gözlerime değdiği o ilk saniyede, hayatımın tamamen değişeceğini anlamıştım.</p></div>
+                <div class="polaroid-body">
+                    <h3>İlk Karşılaşma 🤍</h3>
+                    <p>Gözlerinin gözlerime değdiği o ilk saniyede, hayatımın tamamen değişeceğini biliyordum.</p>
+                </div>
             </div>
-            <div class="card">
+            <div class="polaroid-card">
                 <img src="https://images.unsplash.com/photo-1494774157365-9e04c6722e47?w=500" alt="Gülüşün">
-                <div class="card-body"><h3>En Güzel Manzaram</h3><p>Sen gülerken kısılan gözlerini, dünyanın hiçbir harikasına ve hiçbir manzarasına değişmem.</p></div>
+                <div class="polaroid-body">
+                    <h3>En Güzel Manzaram ✨</h3>
+                    <p>Sen gülerken kısılan gözlerini, dünyanın hiçbir doğa harikasına değişmem sevgilim.</p>
+                </div>
             </div>
-            <div class="card">
+            <div class="polaroid-card">
                 <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=500" alt="Geleceğimiz">
-                <div class="card-body"><h3>Geleceğe Doğru</h3><p>Elini hiç bırakmadan, önümüzdeki tüm yılları ve yolları birlikte yürümek dileğiyle.</p></div>
+                <div class="polaroid-body">
+                    <h3>Sonsuza Doğru 🌹</h3>
+                    <p>Elini hiç bırakmadan, önümüzdeki tüm yılları ve yolları birlikte yürümek dileğiyle.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -172,28 +277,30 @@
     </footer>
 
     <script>
-        // Yıl dönümü başlangıç tarihi
+        // Yıldönümü Tarihiniz (Yıl, Ay-1, Gün) -> Not: JavaScript'te aylar 0'dan başlar (Ocak=0, Şubat=1)
         const loveDate = new Date(2025, 1, 14, 0, 0, 0); 
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-control-btn');
 
-        // 1. YOUTUBE SCRIPTINI OTOMATİK ÇAĞIRMA
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('yt-audio-player', {
-                height: '1',
-                width: '1',
-                videoId: 's7K9vD0Zz0w', // Apocalypse Orijinal Video ID'si
-                playerVars: {
-                    'autoplay': 0,
-                    'controls': 0,
-                    'loop': 1,
-                    'playlist': 's7K9vD0Zz0w'
-                }
-            });
+        // Arka Plandaki Kalp Yağmuru Efekti
+        function createHearts() {
+            const container = document.getElementById('heart-container');
+            const heartTypes = ['❤️', '💖', '🤍', '🌸', '💕'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerText = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4-7 saniye arası düşüş
+                heart.style.fontSize = Math.random() * 15 + 15 + 'px'; // 15-30px arası boyut
+                
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 6000);
+            }, 400); // 400 milisaniyede bir yeni kalp
         }
 
         function updateCounter() {
@@ -221,23 +328,38 @@
             document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
         }
 
+        function toggleMusic() {
+            if (music.paused) {
+                music.volume = 0.4;
+                music.play();
+                musicBtn.classList.add('rotating');
+                musicBtn.innerText = "⏸️";
+            } else {
+                music.pause();
+                musicBtn.classList.remove('rotating');
+                musicBtn.innerText = "🎵";
+            }
+        }
+
         function startEverything() {
             const nameInput = document.getElementById('partner-name').value;
             if(nameInput.trim() !== "") {
                 document.getElementById('dynamic-title').innerText = "Sen ve " + nameInput;
             }
 
-            // 2. RESMİ YOUTUBE OYNATICISINI TETİKLEME
-            if (player && player.playVideo) {
-                player.setVolume(50); // Ses seviyesi yarıda
-                player.playVideo();
-            }
+            music.volume = 0.4;
+            music.play().then(() => {
+                musicBtn.classList.add('rotating');
+                musicBtn.innerText = "⏸️";
+            }).catch(err => {
+                console.log("Müzik için sağ üstteki butona dokunulması bekleniyor.");
+            });
 
-            // Ekranı yumuşakça kaldır
             const overlay = document.getElementById('welcome-overlay');
             overlay.style.opacity = '0';
-            setTimeout(() => { overlay.style.display = 'none'; }, 1200);
+            setTimeout(() => { overlay.style.display = 'none'; }, 1500);
 
+            createHearts();
             setInterval(updateCounter, 1000);
             updateCounter();
         }
